@@ -23,12 +23,12 @@ namespace ParsingExcelFile
                 ExcelFile excel = new ExcelFile(path);
                 var text = string.Empty;
                 CSVFile csvFile = new CSVFile();
-                for (int i = 1; i <= excel.Rows; i++)
+                for (int i = 1; i <= excel.GetRows(); i++)
                 {
-                    for (int j = 1; j <= excel.Columns; j++)
+                    for (int j = 1; j <= excel.GetColumns(); j++)
                     {
-                        var str = excel[j, i];
-                        csvFile.WriteField(str);
+                        var str = excel[i, j];
+                        csvFile.WriteField(i, j, str);
                     }
                 }
             }
