@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ParsingExcelFile
 {
@@ -27,8 +15,17 @@ namespace ParsingExcelFile
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var item = new UploadExcelFile();
-            item.YourMethod();
+            Result_Label.HorizontalContentAlignment = HorizontalAlignment.Center;
+            Result_Label.Content = "Selecting File...";
+            var path = UploadExcelFile.GetExcelPath();
+            Result_Label.Content = "Working and Parsing file...";
+            var excel = UploadExcelFile.CreateExcel(path);
+            var objects = UploadExcelFile.GetResult(excel, out List<string> properties);
+            Result_Label.Content = "Selecting folder to save...";
+            var pathToSave = UploadExcelFile.WriteNewFile(properties, objects);
+            Result_Label.FontSize = 10;
+            Result_Label.Content = $"File has been saved\nPath: {pathToSave}";
+
         }
     }
 }

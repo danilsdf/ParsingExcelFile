@@ -5,9 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParsingExcelFile"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="91" Margin="271,190,0,0" VerticalAlignment="Top" Width="225" Click="Button_Click"/>
-
+        Title="Parse programm" Height="280" Width="320">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="30" Background="LightGray" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0,-6">
+        <Button Style="{StaticResource TabButton}" Content="Select File to parse" FontSize="20" HorizontalAlignment="Center" Height="62" Margin="0,137,0,0" VerticalAlignment="Top" Width="226" Click="Button_Click"/>
+        <Label x:Name="Result_Label" HorizontalAlignment="Center" Height="49" Margin="0,48,0,0" Content="Please, select a file to parse" VerticalAlignment="Top" FontSize="20" Width="256"/>
     </Grid>
 </Window>
